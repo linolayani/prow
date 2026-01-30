@@ -87,10 +87,10 @@ func main() {
 	health := pjutil.NewHealth()
 	health.ServeReady()
 
-	logrus.Info("Start server")
+	logrus.Infof("Start server on port %d", o.port)
 
 	// setup done, actually start the server
-	server := &http.Server{Addr: ":8888", Handler: r}
+	server := &http.Server{Addr: ":" + strconv.Itoa(o.port), Handler: r}
 	interrupts.ListenAndServe(server, 5*time.Second)
 }
 
